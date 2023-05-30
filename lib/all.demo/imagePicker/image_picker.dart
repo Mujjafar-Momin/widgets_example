@@ -50,6 +50,10 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
                   setState(() {
                     files != photos;
                   });
+                  print('images picked');
+                  for(int i=0;i<files!.length;i++){
+                    print(files![i].path);
+                  }
                 },
                 child: const Text('Pick Image'),
               )

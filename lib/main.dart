@@ -1,9 +1,8 @@
-
 import 'package:flutter/material.dart';
-import 'package:stream_demo_project/all.demo/streams/broadcast_stream.dart';
-import 'package:stream_demo_project/all.demo/streams/single_stream.dart';
-import 'package:stream_demo_project/imagePicker/image_picker.dart';
-import 'package:stream_demo_project/imagePicker/multi_image_picker.dart';
+import 'package:stream_demo_project/all.demo/inheritedWidget/data.dart';
+import 'package:stream_demo_project/all.demo/inheritedWidget/home.dart';
+import 'package:stream_demo_project/all.demo/inheritedWidget/inherited_widget.dart';
+import 'package:stream_demo_project/all.demo/keysDemo/KeyDemoWidget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,9 +13,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MultiImagePicker(),
+    return Inherit(
+      database: Data(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme:ThemeData(primaryColor: Colors.tealAccent),
+        home:const KeyDemoWidget() ,
+      ),
     );
   }
 }
