@@ -1,10 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:stream_demo_project/all.demo/quizApp/data/data.dart';
+import 'package:stream_demo_project/all.demo/quizApp/question_screen.dart';
+import 'package:stream_demo_project/all.demo/quizApp/result_screen.dart';
+import 'package:stream_demo_project/all.demo/quizApp/start_screen.dart';
 
-class QuizHome extends StatelessWidget {
+class QuizHome extends StatefulWidget {
   const QuizHome({Key? key}) : super(key: key);
 
   @override
+  State<QuizHome> createState() => _QuizHomeState();
+}
+
+class _QuizHomeState extends State<QuizHome> {
+  List<String> selectedAnswer=[];
+  var activeScreen = 'start-screen';
+
+  void switchScreen() {
+    setState(() {
+      activeScreen = 'questions-screen';
+    });
+  }
+
+  void chooseAnswer(String answer){
+    selectedAnswer.add(answer);
+    if(selectedAnswer.length==questions.length){
+      setState(() {
+        activeScreen = 'results-screen';
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    Widget screenWidget=StartScreen(switchScreen);
+
+    if(activeScreen=='questions-screen'){
+      screenWidget=QuestionScreen(onSelectAnswer: chooseAnswer);
+    }
+    if(activeScreen=='results-screen'){
+      screenWidget=ResultScreen(chosenAnswer: selectedAnswer,);
+    }
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -13,35 +49,7 @@ class QuizHome extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         )),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                "assets/images/quiz-logo.png",
-                width: 300,
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              const Text(
-                "Learn Flutter the Fun way!",
-                style: TextStyle(color: Colors.white),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              ElevatedButton(
-                onPressed: () {},
-                style: const ButtonStyle(
-                  backgroundColor:
-                      MaterialStatePropertyAll<Color>(Colors.transparent),
-                ),
-                child: const Text("Start Quiz"),
-              )
-            ],
-          ),
-        ),
+        child: screenWidget,
       ),
     );
   }

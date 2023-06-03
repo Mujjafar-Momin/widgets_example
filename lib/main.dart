@@ -6,6 +6,8 @@ import 'package:stream_demo_project/all.demo/inheritedWidget/inherited_widget.da
 import 'package:stream_demo_project/all.demo/keysDemo/KeyDemoWidget.dart';
 import 'package:stream_demo_project/all.demo/quizApp/quiz_home.dart';
 
+import 'all.demo/inheritedWidget/home.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: Colors.purple),
-      home: const QuizHome(),
+      home:const QuizHome(),
     );
   }
 }
