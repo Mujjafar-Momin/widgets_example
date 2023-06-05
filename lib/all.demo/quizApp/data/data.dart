@@ -52,4 +52,30 @@ import 'package:stream_demo_project/all.demo/quizApp/model/quiz_question.dart';
       'By calling updateState()',
     ],
   ),
+    QuizQuestion(
+      'How should you update data inside of StatefulWidgets?',
+      [
+        'By calling setState()',
+        'By calling updateData()',
+        'By calling updateUI()',
+        'By calling updateState()',
+      ],
+    ),
+    QuizQuestion(
+      'How should you update data inside of StatefulWidgets?',
+      [
+        'By calling setState()',
+        'By calling updateData()',
+        'By calling updateUI()',
+        'By calling updateState()',
+      ],
+    ),QuizQuestion(
+      'How should you update data inside of StatefulWidgets?',
+      [
+        'By calling setState()',
+        'By calling updateData()',
+        'By calling updateUI()',
+        'By calling updateState()',
+      ],
+    ),
 ];

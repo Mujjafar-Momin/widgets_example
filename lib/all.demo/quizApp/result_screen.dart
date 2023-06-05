@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:stream_demo_project/all.demo/quizApp/data/data.dart';
 import 'package:stream_demo_project/all.demo/quizApp/question_summary.dart';
+import 'package:stream_demo_project/all.demo/quizApp/quiz_home.dart';
+import 'package:stream_demo_project/all.demo/quizApp/start_screen.dart';
 
 class ResultScreen extends StatelessWidget {
   const ResultScreen({Key? key, required this.chosenAnswer}) : super(key: key);
   final List<String> chosenAnswer;
 
-  List<Map<String, Object>> getSummaryData() {
+  List<Map<String, Object>> get summaryData {
     final List<Map<String, Object>> summary = [];
     for (var i = 0; i < chosenAnswer.length; i++) {
       summary.add({
@@ -21,7 +23,6 @@ class ResultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final summaryData = getSummaryData();
     final numTotalQuestion = questions.length;
     final numCorrectQuestion = summaryData.where((data) {
       return data['user-answer'] == data['correct-answer'];
@@ -38,13 +39,26 @@ class ResultScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "You have answered $numCorrectQuestion out of $numTotalQuestion answers correctly!",
-                style: const TextStyle(color: Colors.white),
+                "You have answered $numCorrectQuestion out of $numTotalQuestion answers correctly !",
+                style: const TextStyle(color: Colors.white, fontSize: 18),
               ),
               const SizedBox(height: 30),
               QuestionSummary(summaryData: summaryData),
               const SizedBox(height: 30),
-              TextButton(onPressed: () {}, child: const Text("Reset"))
+              OutlinedButton.icon(
+                onPressed: () {
+                  Navigator.push(
+                      (context),
+                      MaterialPageRoute(
+                        builder: (context) => const QuizHome(),
+                      ));
+                },
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                ),
+                icon: const Icon(Icons.refresh_rounded),
+                label: const Text("Reset Quiz"),
+              )
             ],
           ),
         ),
